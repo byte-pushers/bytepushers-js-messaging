@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 force: true
             },
             build: ['build', 'dist'],
-            deploy: ['doc/**', 'reports/**', 'bytepushers-core-restful-js.js', 'bytepushers-core-restful-js.min.js']
+            deploy: ['doc/**', 'reports/**', 'bytepushers-js-messaging.js', 'bytepushers-js-messaging.min.js']
         },
         jshint: {
             options: {
@@ -54,16 +54,10 @@ module.exports = function (grunt) {
         concat: {
             build: {
                 src: [
-                    'build/src/main/javascript/TransformerException.js',
-                    'build/src/main/javascript/WebServiceException.js',
-                    'build/src/main/javascript/HttpStatus.js',
-                    'build/src/main/javascript/ResponseResultSetTransformer.js',
-                    'build/src/main/javascript/ResponseStatus.js',
-                    'build/src/main/javascript/ResponseExceptionStackTrace.js',
-                    'build/src/main/javascript/Response.js',
-                    'build/src/main/javascript/ResponseTransformer.js',
-                    'build/src/main/javascript/ResponseStatusTransformer.js',
-                    'build/src/main/javascript/ResponseException.js'
+                    'build/src/main/javascript/Messsage.js',
+                    'build/src/main/javascript/MessageFilters.js',
+                    'build/src/main/javascript/MessageHandler.js',
+                    'build/src/main/javascript/FormMessageHandler.js'
                 ],
                 dest: 'dist/<%= pkg.name %>.js'
             }
@@ -74,7 +68,7 @@ module.exports = function (grunt) {
                     mangle: true
                 },
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['dist/bytepushers-core-restful-js.js']
+                    'dist/<%= pkg.name %>.min.js': ['dist/bytepushers-js-messaging.js']
                 }
             }
         },
@@ -93,7 +87,7 @@ module.exports = function (grunt) {
 
         watch: {
             karma: {
-                files: ['src/**/*.js', 'src/test/javascripttest-main.js'],
+                files: ['src/**/*.js', 'test-main.js'],
                 tasks: ['test-karma-ci']
             }
         }

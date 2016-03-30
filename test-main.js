@@ -24,52 +24,28 @@ require.config({
     baseUrl: '/base',
 
     paths: {
-        'BytePushers': 'node_modules/bytepuhsers-common-js/bytepushers-common-js.min',
-        'TransformerException': 'src/main/javascript/TransformerException',
-        'WebServiceException': 'src/main/javascript/WebServiceException',
-        'HttpStatus': 'src/main/javascript/HttpStatus',
-        'Response': 'src/main/javascript/Response',
-        'ResponseException': 'src/main/javascript/ResponseException',
-        'ResponseStatus': 'src/main/javascript/ResponseStatus',
-        'ResponseTransformer': 'src/main/javascript/ResponseTransformer',
-        'ResponseExceptionStackTrace': 'src/main/javascript/ResponseExceptionStackTrace',
-        'ResponseResultSetTransformer': 'src/main/javascript/ResponseResultSetTransformer',
-        'ResponseStatusTransformer': 'src/main/javascript/ResponseStatusTransformer'
+        'BytePushers': 'node_modules/bytepushers-js-core/bytepushers-js-core.min',
+        'Message': 'src/main/javascript/Message',
+        'MessageFilters': 'src/main/javascript/MessageFilters',
+        'MessageHandler': 'src/main/javascript/MessageHandler',
+        'FormMessageHandler': 'src/main/javascript/FormMessageHandler'
     },
 
     shim: {
-        'BytePushers': {
+        BytePushers: {
             exports: 'BytePushers'
         },
-        TransformerException: {
+        Message: {
             deps: ['BytePushers']
         },
-        WebServiceException: {
+        MessageFilters: {
+            deps: ['BytePushers', 'Message']
+        },
+        MessageHandler: {
+            deps: ['BytePushers', 'Message']
+        },
+        FormMessageHandler: {
             deps: ['BytePushers']
-        },
-        HttpStatus: {
-            deps: ['BytePushers']
-        },
-        ResponseException: {
-            deps: ['BytePushers', 'ResponseExceptionStackTrace']
-        },
-        ResponseStatus: {
-            deps: ['BytePushers']
-        },
-        Response: {
-            deps: ['BytePushers', 'ResponseStatus']
-        },
-        ResponseTransformer: {
-            deps: ['BytePushers', 'HttpStatus', 'ResponseStatus']
-        },
-        ResponseExceptionStackTrace: {
-            deps: ['BytePushers', 'ResponseStatus']
-        },
-        ResponseResultSetTransformer: {
-            deps: ['BytePushers']
-        },
-        ResponseStatusTransformer: {
-            deps: ['BytePushers', 'TransformerException', 'ResponseStatus']
         }
     },
 

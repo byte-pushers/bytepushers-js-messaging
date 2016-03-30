@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'node_modules/bytepuhsers-common-js/*.js', included: false},
+        {pattern: 'node_modules/bytepushers-js-core/*.js', included: false},
         {pattern: 'src/main/javascript/**/*.js', included: false},
         {pattern: 'src/test/javascript/**/*Spec.js', included: false},
         'test-main.js'
