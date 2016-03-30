@@ -1,0 +1,18 @@
+{
+  "name": "bytepushers-messaging-js",
+  "homepage": "https://github.com/byte-pushers/bytepushers-messaging-js",
+  "authors": [
+    "Jared Ramirez <jaredramirez@me.com>"
+  ],
+  "description": "Core Restful JavaScript framework.",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byte-pushers/bytepushers-messaging-js"
+  },
+  "dependencies": {
+
+  }
+}
