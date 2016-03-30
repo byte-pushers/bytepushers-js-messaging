@@ -1,86 +1,89 @@
-/**
- * Created by pouncilt on 9/19/14.
- */
-
-angular.module('gov.va.iam.acs.ams.filters.messages.module', []).filter('uniqueMessage', function () {
+/*global BytePushers, angular*/
+(function (BytePushers) {
     'use strict';
-    return function (messages) {
-        var filteredArray = [];
 
-        if(Object.isArray(messages) && messages.length > 0){
-            filteredArray = messages.filter(function (existingMessage, existingMessageIndex, existingMessages) {
-                var foundDuplicateMessage = false, filterResult = false;
-                foundDuplicateMessage = existingMessages.some(function (someMessage, someMessageIndex) {
-                    if (existingMessageIndex !== someMessageIndex) {
-                        if (Object.isDefined(existingMessage) && Object.isDefined(someMessage)) {
-                            var existingMessageValue = Object.getProperty(existingMessage, "value");
-                            var someMessageValue = Object.getProperty(someMessage, "value");
-                            if (existingMessageValue === someMessageValue) {
-                                return true;
+    angular.module('software.bytepushers.filters.messages.module', []).filter('uniqueMessage', function () {
+        return function (messages) {
+            var filteredArray = [], foundDuplicateMessage, filterResult, existingMessageValue, someMessageValue;
+
+            if (Object.isArray(messages) && messages.length > 0) {
+                filteredArray = messages.filter(function (existingMessage, existingMessageIndex, existingMessages) {
+                    foundDuplicateMessage = false;
+                    filterResult = false;
+                    foundDuplicateMessage = existingMessages.some(function (someMessage, someMessageIndex) {
+                        if (existingMessageIndex !== someMessageIndex) {
+                            if (Object.isDefined(existingMessage) && Object.isDefined(someMessage)) {
+                                existingMessageValue = Object.getProperty(existingMessage, "value");
+                                someMessageValue = Object.getProperty(someMessage, "value");
+                                if (existingMessageValue === someMessageValue) {
+                                    return true;
+                                }
                             }
                         }
+
+                        return false;
+                    });
+
+                    if (!foundDuplicateMessage) {
+                        filterResult = true;
                     }
 
-                    return false;
+                    return filterResult;
                 });
+            } else {
+                filteredArray = messages;
+            }
 
-                if (!foundDuplicateMessage) {
-                    filterResult = true;
-                }
+            return filteredArray;
 
-                return filterResult;
-            });
-        } else {
-           filteredArray = messages;
-        }
-
-        return filteredArray;
-        
-    };
-}).filter('errorMessage', function (){
-    'use strict';
-    return function (messages) {
-        var filteredArray = [], filterResult = false;
-        if(Object.isArray(messages) && messages.length > 0){
-            filteredArray = messages.filter(function(message, messageIndex, messageArray) {
-                var messageType = Object.getProperty(message, "type");
-                if(messageType.toLowerCase() === VA_AMS.models.Message.ERROR) {
-                    var messageValue = Object.getProperty(message, "value");
-                    if(!Object.isDefined(messageValue)) {
-                        Object.setProperty(message, "value", VA_AMS.models.Message.ERROR_MSG);
+        };
+    }).filter('errorMessage', function () {
+        return function (messages) {
+            var filteredArray = [], filterResult = false, messageType, messageValue;
+            if (Object.isArray(messages) && messages.length > 0) {
+                /*jslint unparam:true*/
+                filteredArray = messages.filter(function (message, messageIndex, messageArray) {
+                    messageType = Object.getProperty(message, "type");
+                    if (messageType.toLowerCase() === BytePushers.models.Message.ERROR) {
+                        messageValue = Object.getProperty(message, "value");
+                        if (!Object.isDefined(messageValue)) {
+                            Object.setProperty(message, "value", BytePushers.models.Message.ERROR_MSG);
+                        }
+                        filterResult = true;
+                    } else {
+                        filterResult = false;
                     }
-                    filterResult = true;
-                } else {
-                    filterResult = false;
-                }
 
-                return filterResult;
-            });
-        } else{
-            filteredArray = messages;
-        }
+                    return filterResult;
+                });
+                /*jslint unparam:false*/
+            } else {
+                filteredArray = messages;
+            }
 
-        return filteredArray
-    }
-}).filter('successfulMessage', function (){
-    'use strict';
-    return function (messages) {
-        var filteredArray = [], filterResult = false;
-        if(Object.isArray(messages)){
-            filteredArray = messages.filter(function(message, messageIndex, messageArray) {
-                if(message.getType().toLowerCase() === VA_AMS.models.Message.SUCCESSFUL) {
-                    if(!Object.isDefined(message.getValue())) {
-                        message.setValue("Warning:  Successful action did not produce a message.");
+            return filteredArray;
+        };
+    }).filter('successfulMessage', function () {
+        return function (messages) {
+            var filteredArray = [], filterResult = false;
+            if (Object.isArray(messages)) {
+                /*jslint unparam:true*/
+                filteredArray = messages.filter(function (message, messageIndex, messageArray) {
+                    if (message.getType().toLowerCase() === BytePushers.models.Message.SUCCESSFUL) {
+                        if (!Object.isDefined(message.getValue())) {
+                            message.setValue("Warning:  Successful action did not produce a message.");
+                        }
+                        filterResult = true;
+                    } else {
+                        filterResult = false;
                     }
-                    filterResult = true;
-                } else {
-                    filterResult = false;
-                }
 
-                return filterResult;
-            });
-        }
+                    return filterResult;
+                });
+                /*jslint unparam:false*/
+            }
 
-        return filteredArray
-    }
-});
+            return filteredArray;
+        };
+    });
+}(BytePushers));
