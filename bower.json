@@ -1,6 +1,6 @@
 {
-  "name": "bytepushers-messaging-js",
-  "homepage": "https://github.com/byte-pushers/bytepushers-messaging-js",
+  "name": "bytepushers-js-messaging",
+  "homepage": "https://github.com/byte-pushers/bytepushers-js-messaging",
   "authors": [
     "Jared Ramirez <jaredramirez@me.com>"
   ],
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/byte-pushers/bytepushers-messaging-js"
+    "url": "https://github.com/byte-pushers/bytepushers-js-messaging.git"
   },
   "dependencies": {
 

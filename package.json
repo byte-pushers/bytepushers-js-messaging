@@ -1,10 +1,10 @@
 {
-  "name": "bytepushers-messaging-js",
+  "name": "bytepushers-js-messaging",
   "version": "0.0.0",
   "description": "A Restful JavaScript APIs that handles transforming JSON data structure into domain driven JavaScript Models",
   "repository": {
     "type": "git",
-    "url": "https://github.com/byte-pushers/bytepushers-messaging-js"
+    "url": "https://github.com/byte-pushers/bytepushers-js-messaging.git"
   },
   "license": "MIT",
   "author": "Tonté Pouncil <pouncilt.developer@gmail.com>",
