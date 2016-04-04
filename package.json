@@ -1,7 +1,7 @@
 {
   "name": "bytepushers-js-messaging",
-  "version": "0.0.0",
-  "description": "A Restful JavaScript APIs that handles transforming JSON data structure into domain driven JavaScript Models",
+  "version": "0.0.1",
+  "description": "JavaScript API that creates and handlers Message Object data structures.",
   "repository": {
     "type": "git",
     "url": "https://github.com/byte-pushers/bytepushers-js-messaging.git"
@@ -13,7 +13,8 @@
   },
   "main": "index.js",
   "devDependencies": {
-    "bytepushers-js-core": "0.0.26",
+    "angular": "^1.5.3",
+    "bytepushers-js-core": "0.0.28",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-concat": "^1.0.0",
