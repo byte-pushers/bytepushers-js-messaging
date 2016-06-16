@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'bower_components/bytepushers-js-core/release/bytepushers-js-core.js', included: false},
+        {pattern: 'bower_components/bytepushers-js-core/release/bytepushers-js-core.min.js', included: false},
         {pattern: 'src/main/javascript/**/*.js', included: false},
         {pattern: 'src/test/javascript/**/*Spec.js', included: false},
         'test-main.js'
