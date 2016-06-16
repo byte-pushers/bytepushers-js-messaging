@@ -25,10 +25,10 @@ require.config({
 
     paths: {
         'BytePushers': 'bower_components/bytepushers-js-core/release/bytepushers-js-core.min',
-        'Message': 'src/main/javascript/Message',
-        'MessageFilters': 'src/main/javascript/MessageFilters',
-        'MessageHandler': 'src/main/javascript/MessageHandler',
-        'FormMessageHandler': 'src/main/javascript/FormMessageHandler'
+        'Message': 'src/main/javascript/software.bytepushers.Message',
+        'MessageFilters': 'src/main/javascript/software.bytepushers.MessageFilters',
+        'MessageHandler': 'src/main/javascript/software.bytepushers.MessageHandler',
+        'FormMessageHandler': 'src/main/javascript/software.bytepushers.FormMessageHandler'
     },
 
     shim: {
