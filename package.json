@@ -1,6 +1,6 @@
 {
   "name": "bytepushers-js-messaging",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "JavaScript API that creates and handlers Message Object data structures.",
   "repository": {
     "type": "git",
