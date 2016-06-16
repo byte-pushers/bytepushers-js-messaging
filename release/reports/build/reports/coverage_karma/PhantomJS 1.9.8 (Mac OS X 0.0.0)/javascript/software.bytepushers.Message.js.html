@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for javascript/software.bytepushers.Message.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">javascript/</a> software.bytepushers.Message.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">69.57% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>16/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">69.57% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global BytePushers*/
+(function (BytePushers) {
+    'use strict';
+    /**
+     * Represents the application api.  If the variable is already defined use it,
+     * otherwise create an empty object.
+     *
+     * @type {BytePushers|*|BytePushers|*|{}|{}}
+     */
+    BytePushers = BytePushers || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    /**
+     * Represents the application static variable. Use existing static variable, if one already exists,
+     * otherwise create a new one.
+     *
+     * @static
+     * @type {*|BytePushers.models|*|BytePushers.models|Object|*|Object|*}
+     */
+    BytePushers.models = BytePushers.models || <span class="branch-1 cbranch-no" title="branch not covered" >BytePushers.namespace("software.byetpushers.models");</span>
+    /**
+     * Constructor method for the Message class.  The properties of this class can be initialized with
+     * the jsonUserObject.
+     * @class
+     * @classdesc   This class is a domain model message class; which means it has both behavior and state information about the Message.
+     * @param {type: String, value: String} jsonMessageObject  Represents the JSON representation of a Message object.
+     * @constructor
+     * @author &lt;a href="mailto:pouncilt.developer@gmail.com"&gt;Tont&amp;eacute; Pouncil&lt;/a&gt;
+     */
+    BytePushers.models.Message = function (jsonMessageObject) {
+        var type = (Object.isDefined(jsonMessageObject) &amp;&amp; Object.isDefined(jsonMessageObject.type)) ? jsonMessageObject.type : <span class="branch-1 cbranch-no" title="branch not covered" >null,</span>
+            value = (Object.isDefined(jsonMessageObject) &amp;&amp; Object.isDefined(jsonMessageObject.value)) ? jsonMessageObject.value : <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
+&nbsp;
+        this.getType = function () {
+            return type;
+        };
+&nbsp;
+        this.getValue = function () {
+            return value;
+        };
+&nbsp;
+        this.setValue = <span class="fstat-no" title="function not covered" >function (someValue) {</span>
+<span class="cstat-no" title="statement not covered" >            value = someValue;</span>
+        };
+        this.toJSON = <span class="fstat-no" title="function not covered" >function (serializeUIProperties) {</span>
+<span class="cstat-no" title="statement not covered" >            serializeUIProperties = (Object.isDefined(serializeUIProperties) &amp;&amp; Object.isBoolean(serializeUIProperties)) ? serializeUIProperties : false;</span>
+<span class="cstat-no" title="statement not covered" >            var jsonType = (Object.isString(type)) ? "\"" + type + "\"" : null,</span>
+                jsonValue = (Object.isString(value)) ? "\"" + value + "\"" : null,
+                json = "{" +
+                    "\"type\": " + jsonType + "," +
+                    "\"value\": " + jsonValue +
+                    "}";
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return json;</span>
+        };
+&nbsp;
+        this.toUIObject = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            var UIObject = JSON.parse(this.toJSON(true));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return UIObject;</span>
+        };
+    };
+    BytePushers.models.Message.SUCCESSFUL = "successful";
+    BytePushers.models.Message.ERROR = "error";
+    BytePushers.models.Message.ERROR_MSG = "Sorry, we are unable save your data at this time.  Please contact your System Administrator if this continues.";
+    BytePushers.models.Message.prototype.toString = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return "Message  {type: " + this.getType() + ", value: " + this.getValue() + "}";</span>
+    };
+}(BytePushers));</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 16 2016 17:19:24 GMT-0500 (CDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
