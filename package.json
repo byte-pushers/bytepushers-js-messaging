@@ -30,6 +30,7 @@
     "grunt-jsdoc": "^1.1.0",
     "grunt-jslint": "^1.1.14",
     "grunt-karma": "^0.12.1",
+    "grunt-npm": "0.0.2",
     "grunt-release": "^0.13.0",
     "jshint-stylish": "^2.2.0",
     "karma": "^0.13.22",
