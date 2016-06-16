@@ -1,18 +1,26 @@
 {
   "name": "bytepushers-js-messaging",
-  "homepage": "https://github.com/byte-pushers/bytepushers-js-messaging",
-  "authors": [
-    "Jared Ramirez <jaredramirez@me.com>"
-  ],
-  "description": "Core Restful JavaScript framework.",
   "version": "0.0.0",
-  "private": true,
-  "license": "MIT",
+  "description": "Core Restful JavaScript framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/byte-pushers/bytepushers-js-messaging.git"
   },
+  "license": "MIT",
+  "authors": [
+    "Jared Ramirez <jaredramirez@me.com>"
+  ],
+  "contributors": [
+    "Jared Ramirez <jaredramirez@me.com> ",
+    "Tonté Pouncil <pouncilt.developer@gmail.com> "
+  ],
+  "directories": {
+    "lib": "release"
+  },
+  "main": [
+    "release/bytepushers-js-messaging.js"
+  ],
   "dependencies": {
-
+    "bytepushers-js-core": "~0.0.60"
   }
 }

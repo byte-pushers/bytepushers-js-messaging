@@ -3,20 +3,22 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: {
-            options: {
-                /*if false, causes error: 'Warning: Cannot delete files outside the current working directory. Use --force to continue.'*/
-                force: true
-            },
-            build: ['build', 'dist'],
-            deploy: ['doc/**', 'reports/**', 'bytepushers-js-messaging.js', 'bytepushers-js-messaging.min.js']
+            build: ["build"],
+            release: {
+                options: {
+                    force: true
+                },
+                src: ['release']
+            }
         },
         jshint: {
             options: {
                 undef: false,
                 unused: false,
-                nonbsp: true
+                nonbsp: true,
+                reporter: require('jshint-stylish')
             },
-            files: ['src/main/**/*.js']
+            files: ['src/main/javascript/**/*.js']
         },
         jslint: {
             javascript: {
@@ -24,7 +26,7 @@ module.exports = function (grunt) {
                     edition: 'latest',
                     errorsOnly: true
                 },
-                src: ['src/main/**/*.js']
+                src: ['src/main/javascript/**/*.js']
             }
         },
         karma: {
@@ -37,54 +39,97 @@ module.exports = function (grunt) {
         },
         copy: {
             build: {
-                files: [{expanded: true, src: ['src/main/javascript/*.js'], dest: 'build/', filter: 'isFile'}]
+                files: [{expand: true, src: ['src/main/javascript/*.js'], dest: 'build/', filter: 'isFile'}]
             },
-            deploy: {
-                files: [{expand: true, cwd: 'dist/', src: ['**'], dest: ''}]
+            release: {
+                files: [
+                    {
+                        expand: true,
+                        src: [
+                            'build/<%= pkg.name %>.min.js',
+                            'build/<%= pkg.name %>.js',
+                            'build/src/main/javascript/index.js'
+                        ],
+                        dest: 'release/',
+                        filter: 'isFile',
+                        flatten: true
+                    },
+                    {
+                        expand: true,
+                        src: [
+                            'build/reports/**'
+                        ],
+                        dest: 'release/reports/',
+                        filter: 'isFile',
+                        flatten: false
+                    }
+                ]
             }
         },
-        jsdoc: {
-            build: {
-                src: ['build/src/main/javascript/*.js'],
-                options: {
-                    destination: 'dist/doc'
-                }
-            }
-        },
-        concat: {
-            build: {
-                src: [
-                    'build/src/main/javascript/Messsage.js',
-                    'build/src/main/javascript/MessageFilters.js',
-                    'build/src/main/javascript/MessageHandler.js',
-                    'build/src/main/javascript/FormMessageHandler.js'
-                ],
-                dest: 'dist/<%= pkg.name %>.js'
-            }
-        },
+        /*jsdoc: {
+         dist: {
+         src: ['build/src/main/javascript/!*.js'],
+         options: {
+         destination: 'dist/doc'
+         }
+         }
+         },*/
         uglify: {
-            build: {
+            build_min: {
                 options: {
                     mangle: true
                 },
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['dist/bytepushers-js-messaging.js']
+                    'build/<%= pkg.name %>.min.js': ['build/src/main/javascript/software.bytepushers.*.js']
+                }
+            },
+            build: {
+                options: {
+                    beautify: true
+                },
+                files: {
+                    'build/<%= pkg.name %>.js': ['build/src/main/javascript/software.bytepushers.*.js']
                 }
             }
         },
-
-        release: {
+        concat: {
             options: {
-                commitMessage: 'release <%= version %>',
-                tagMessage: 'version <%= version %>',
-                github: {
-
-                    repo: 'byte-pushers/bytepushers-core-restful-js',
-                    accessTokenVar: 'GITHUB_ACCESS_TOKE_'
-                }
+                separator: ';'
+            },
+            build: {
+                src: ['build/src/main/javascript/software.bytepushers.*.js'],
+                dest: 'build/<%= pkg.name %>.js'
             }
         },
-
+        bump: {
+            options: {
+                files: ['package.json', 'bower.json'],
+                updateConfigs: ['pkg'],
+                commit: true,
+                commitMessage: 'Release v%VERSION%',
+                commitFiles: ['-a'],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: true,
+                pushTo: 'origin',
+                gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
+                globalReplace: false,
+                prereleaseName: false,
+                metadata: '',
+                regExp: false
+            }
+        },
+        'npm-publish': {
+            options: {
+                // list of tasks that are required before publishing
+                //requires: ['build'],
+                // if the workspace is dirty, abort publishing (to avoid publishing local changes)
+                abortIfDirty: true,
+                // can also be a function that returns NPM tag (eg. to determine canary/latest tag based on the version)
+                tag: 'latest'
+            }
+        },
         watch: {
             karma: {
                 files: ['src/**/*.js', 'test-main.js'],
@@ -93,32 +138,29 @@ module.exports = function (grunt) {
         }
     });
 
+    var build = grunt.option('target') || 'build';
+    var release = grunt.option('target') || 'release';
+    var karma_server = grunt.option('target') || 'server';
+    var karma_ci = grunt.option('target') || 'ci';
+
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-contrib-concat');
+    //grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-
-    grunt.loadNpmTasks('grunt-release');
-
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
-
-    var build = grunt.option('target') || 'build';
-    var deploy = grunt.option('target') || 'deploy';
-    var karma_server = grunt.option('target') || 'server';
-    var karma_ci = grunt.option('target') || 'ci';
+    grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-npm');
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['clean:' + build, 'lint', 'test', 'package']);
-
-    grunt.registerTask('lint', ['jshint', 'jslint']);
+    grunt.registerTask('validate', ['jshint', 'jslint']);
     grunt.registerTask('test', ['test-karma-ci']);
-    grunt.registerTask('test-karma-server', ['karma:' + karma_server]);
+    grunt.registerTask('test-karma', ['karma:' + karma_server]);
     grunt.registerTask('test-karma-ci', ['karma:' + karma_ci]);
-    grunt.registerTask('package', ['copy:' + build, 'jsdoc', 'concat', 'uglify']);
-
-    grunt.registerTask('deploy', ['copy:' + deploy, 'release', 'clean:' + deploy]);
+    grunt.registerTask('package', ['copy:' + build, 'uglify', 'concat']);
+    grunt.registerTask('build', ['clean:' + build, 'validate', 'test', 'package']);
+    grunt.registerTask('release', ['clean:release', 'build', 'copy:release', 'bump', 'npm-publish']);
 };

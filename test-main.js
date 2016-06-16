@@ -24,7 +24,7 @@ require.config({
     baseUrl: '/base',
 
     paths: {
-        'BytePushers': 'node_modules/bytepushers-js-core/bytepushers-js-core.min',
+        'BytePushers': 'bower_components/bytepushers-js-core/release/bytepushers-js-core.min',
         'Message': 'src/main/javascript/Message',
         'MessageFilters': 'src/main/javascript/MessageFilters',
         'MessageHandler': 'src/main/javascript/MessageHandler',
